@@ -1,4 +1,4 @@
-body {
+body{
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #1b1b2f, #162447);
   color: #f0f0f0;
@@ -9,43 +9,51 @@ body {
   min-height: 100vh;
 }
 
-header {
+#persona{
+  width: 280px;
+  height: 240px;
+  border-radius: 10%;
+}
+
+#cassette{
+  width: 280px;
+  height: 240px;
+  border-radius: 10%;
+}
+
+header{
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: rgba(0, 0, 0, 0.3);
   padding: 15px 40px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  backdrop-filter: blur(5px);
 }
 
-.titulo-pagina {
+.titulo-pagina{
   font-size: 1.4em;
-  color: #ff4d6d;
+  color: #ff9d4d;
 }
 
-nav a {
+nav a{
   color: #f0f0f0;
   text-decoration: none;
   margin-left: 20px;
   transition: color 0.2s;
 }
 
-nav a:hover {
-  color: #ff4d6d;
+nav a:hover{
+  color: #ffffff;
 }
 
-.contenedor {
+.contenedor{
   text-align: center;
   margin-top: 120px;
   padding: 40px;
   border-radius: 20px;
 }
 
-#infoMusica {
+#infoMusica{
   background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
   padding: 20px;
@@ -54,39 +62,38 @@ nav a:hover {
   margin: 0 auto 25px auto;
 }
 
-#infoMusica:hover {
+#infoMusica:hover{
   transform: scale(1.07);
 }
 
-#imagen {
+#imagen{
   width: 100%;
   border-radius: 12px;
   margin-top: 10px;
 }
 
-#titulo {
+#titulo{
   font-size: 1.2em;
-  color: #ff4d6d;
+  color: #ff9d4d;
   margin: 10px 0 5px 0;
 }
 
-#artista {
+#artista{
   font-size: 1em;
   color: #ccc;
 }
 
-button {
-  background: #ff4d6d;
+button{
+  background: #3e41df;
   color: white;
   border: none;
   padding: 10px 22px;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
 }
 
-button:hover {
-  background: #ff6784;
+button:hover{
+  background: #676aff;
   transform: scale(1.05);
 }
