@@ -27,3 +27,11 @@ boton.addEventListener("click", function() {
 })
 
 obtenerMusica()
+
+let botonTema = document.querySelector("#boton-tema")
+
+botonTema.addEventListener("click", function() {
+  let cuerpo = document.querySelector("body")
+  cuerpo.classList.toggle("claro")
+  botonTema.textContent = cuerpo.classList.contains("claro") ? "🌙" : "☀️"
+})
