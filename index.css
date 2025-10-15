@@ -116,6 +116,33 @@ button:hover{
   transform: scale(1.05);
 }
 
+#botonInfo {
+  background: #3e41df;
+  border: 2px solid #3e41df;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+#botonInfo:hover{
+  background: #676aff;
+  color: white;
+  transform: scale(1.05);
+}
+
+body.claro #botonInfo{
+  border-color: #d6336c;
+  color: #d6336c;
+}
+
+body.claro #botonInfo:hover{
+  background: #d6336c;
+  color: white;
+}
+
 body.claro{
   background: linear-gradient(135deg, #f4f4f4, #e8e8e8);
   color: #222;

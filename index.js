@@ -28,6 +28,17 @@ boton.addEventListener("click", function() {
 
 obtenerMusica()
 
+let botonInfo = document.querySelector("#botonInfo")
+let urlAlbum = ""
+
+botonInfo.addEventListener("click", function() {
+  if (urlAlbum && urlAlbum.trim() !== "") {
+    window.open(urlAlbum)
+  } else {
+    alert("No se encontró el enlace del álbum. ")
+  }
+})
+
 let botonTema = document.querySelector("#boton-tema")
 
 botonTema.addEventListener("click", function() {
