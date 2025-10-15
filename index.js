@@ -1,64 +1,29 @@
-let botonBuscar = document.querySelector('#botonBuscar');
-let contenedorAlbumes = document.querySelector('#contenedorAlbumes');
+let boton = document.querySelector("#boton")
+let titulo = document.querySelector("#titulo")
+let artista = document.querySelector("#artista")
+let imagen = document.querySelector("#imagen")
+let clave = "e69926f293d7596b54065bc1e9cede4d"
+let generos = ["rock", "pop", "hip-hop", "electronic", "jazz", "rnb", "metal"]
 
-function buscarArtista() {
-    let nombreArtista = prompt('Ingresa el nombre del artista o banda musical:');
-
-    if (!nombreArtista) {
-        alert('No ingresaste ningún nombre.');
-        return;
-    }
-
-    let urlBusqueda = `https://musicbrainz.org/ws/2/artist?query=${encodeURIComponent(nombreArtista)}&fmt=json`;
-
-    fetch(urlBusqueda)
-        .then(respuesta => respuesta.json())
-        .then(datos => {
-            if (datos.artists.length === 0) {
-                alert('No se encontró el artista.');
-                return;
-            }
-
-            let idArtista = datos.artists[0].id;
-            let urlAlbumes = `https://musicbrainz.org/ws/2/release-group?artist=${idArtista}&type=album&fmt=json`;
-
-            return fetch(urlAlbumes);
-        })
-        .then(respuesta => respuesta ? respuesta.json() : null)
-        .then(datosAlbumes => {
-            if (!datosAlbumes) return;
-
-            contenedorAlbumes.innerHTML = '';
-
-            for (let i = 0; i < datosAlbumes['release-groups'].length; i++) {
-                let album = datosAlbumes['release-groups'][i];
-
-                let nombreAlbum = album.title;
-                let idAlbum = album.id;
-                let urlPortada = `https://coverartarchive.org/release-group/${idAlbum}/front-250`;
-
-                let tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta');
-
-                let imagen = document.createElement('img');
-                imagen.src = urlPortada;
-                imagen.onerror = function() {
-                    this.src = 'https://via.placeholder.com/250x250?text=Sin+Portada';
-                };
-
-                let titulo = document.createElement('h3');
-                titulo.textContent = nombreAlbum;
-
-                tarjeta.appendChild(imagen);
-                tarjeta.appendChild(titulo);
-                contenedorAlbumes.appendChild(tarjeta);
-            }
-        })
-        .catch(error => {
-            alert('Ocurrió un error al buscar los datos.');
-            console.log(error);
-        });
+function obtenerMusica() {
+  let indice = Math.floor(Math.random() * generos.length)
+  let genero = generos[indice]
+  let url = "https://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=" + genero + "&api_key=" + clave + "&format=json"
+  
+  fetch(url)
+    .then(function(respuesta) { return respuesta.json() })
+    .then(function(datos) {
+      let lista = datos.albums.album
+      let numero = Math.floor(Math.random() * lista.length)
+      let album = lista[numero]
+      titulo.textContent = album.name
+      artista.textContent = album.artist.name
+      imagen.src = album.image[3]["#text"]
+    })
 }
 
-botonBuscar.addEventListener('click', buscarArtista);
+boton.addEventListener("click", function() {
+  obtenerMusica()
+})
 
+obtenerMusica()
