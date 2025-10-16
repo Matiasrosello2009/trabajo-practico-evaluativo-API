@@ -217,8 +217,3 @@ body.claro #boton{
 body.claro #boton:hover{
   background: #e35a8b;
 }
-
-body.claro h2:hover{
-  background: #d6336c;
-  color: white;
-}
