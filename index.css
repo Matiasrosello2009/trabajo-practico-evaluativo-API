@@ -9,6 +9,30 @@ body{
   min-height: 100vh;
 }
 
+h2{
+  margin: 10px 0;
+  background-color: #202749;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 6px;
+}
+
+h1{
+  margin: 10px 0;
+  background-color: #1f2b5f;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 6px;
+}
+
+#recomendacion{
+  margin: 10px 0;
+  background-color: #1f2b5f;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 6px;
+}
+
 #persona{
   width: 280px;
   height: 240px;
@@ -32,7 +56,7 @@ header{
 
 .titulo-pagina{
   font-size: 1.4em;
-  color: #ff9d4d;
+  color: #f88629;
 }
 
 nav a{
@@ -192,4 +216,9 @@ body.claro #boton{
 
 body.claro #boton:hover{
   background: #e35a8b;
+}
+
+body.claro h2:hover{
+  background: #d6336c;
+  color: white;
 }
