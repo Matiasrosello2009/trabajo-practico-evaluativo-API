@@ -17,6 +17,14 @@ h2{
   border-radius: 6px;
 }
 
+#advertencia{
+  margin: 10px 0;
+  background-color: #f16b6b;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 6px;
+}
+
 h1{
   margin: 10px 0;
   background-color: #354fc7;
