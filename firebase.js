@@ -3,8 +3,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebas
 //Modulos de la base de datos: Cada uno de estos modulos nos permite realizar diferentes operaciones en la base de datos
 //Por ejemplo, "getDatabase" nos permite obtener una instancia de la base de datos, 
 // "ref" nos permite crear referencias a ubicaciones específicas en la base de datos,
+//"push" nos permite agregar nuevos datos a una lista, 
 // "onValue" nos permite escuchar cambios en los datos en tiempo real, y 
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+// "set" nos permite escribir datos en una ubicación específica.
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
 
 
 //Importamos esta configuracion desde firebase
@@ -29,31 +31,46 @@ const app = initializeApp(firebaseConfig);
 //Inicializamos la base de datos
 const db = getDatabase(app);
 
-//Referenciamos el elemento del DOM donde mostraremos la lista de tareas
-let tabla = document.querySelector(".tabla-estudiantes");
+//Seleccionamos los elementos del DOM donde mostraremos los datos
+//y donde agregaremos nuevos datos
+//Primero los  iunput para agregar nuevos estudiantes
+let inputNombre = document.querySelector("#nombre");
+let inputApellido = document.querySelector("#apellido");
+let inputEdad = document.querySelector("#edad");
+let inputDni = document.querySelector("#dni");
+let inputNota = document.querySelector("#nota");
+//y el boton
+let btnAgregar = document.querySelector("#agregar");
 
-// 🔹 Creamos una referencia a la rama "estudiantes"
-const refEstudiantes = ref(db, "estudiantes");
 
-// 🔹 Escuchamos los cambios en tiempo real en la rama "estudiantes
-// La función onValue se ejecuta cada vez que hay un cambio en los datos de la referencia especificada
-onValue(refEstudiantes, (datos) => {
-    console.log(datos)
-    //Obtenemos la información de los estudiantes
-    let estudiantes = datos.val();
-    //Limpiamos la lista antes de actualizarla
-    tabla.innerHTML = "";
-    //Recorremos los datos obtenidos de los estudiantes
-    for (let dni in estudiantes) {
-        tabla.innerHTML += `
-        <tr>
-            <td>${dni}</td>
-            <td>${estudiantes[dni].apellido}</td>
-            <td>${estudiantes[dni].nombre}</td>
-            <td>${estudiantes[dni].edad}</td>
-        </tr>
-        `;
-        
-    }
+btnAgregar.onclick = function () {
+    //Creamos una referencia a la ubicación "estudiantes" en la base de datos
+    //Y con el dni como clave unica
+    //Esto asegura que cada estudiante se almacene bajo su dni
+    let estudiantesRef = ref(db, 'estudiantes/' + inputDni.value);
 
-})
+    //Usamos la función "set" para escribir los datos del nuevo estudiante en la base de datos
+    //Le indicamos donde almacenar los datos y qué datos almacenar
+
+
+    set(estudiantesRef, {
+        //Tomamos cada dato desde los inputs del formulario
+        nombre: inputNombre.value,
+        apellido: inputApellido.value,
+        edad: inputEdad.value,
+        nota: inputNota.value
+    })
+
+
+        //Agregamos algunas alertas para indicar que los datos se han agregado correctamente
+        //o si hubo un error al agregar los datos
+        //Usamos la función "then" para manejar el caso exitoso
+        .then(() => {
+            alert("Estudiante agregado correctamente");
+        })
+        //Usamos la función "catch" para manejar errores
+        .catch((error) => {
+            alert("Error al agregar estudiante: " + error.message);
+        }); 
+
+}

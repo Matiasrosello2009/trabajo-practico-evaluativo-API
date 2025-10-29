@@ -1,34 +1,24 @@
 
-Firebase: RealTime DataBase
-IVT Rojas Delgadín Alejandro
-•
-27 oct (Última modificación: 27 oct)
-lista.js
-JavaScript
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista estudiantes</title>
+    <title>Prueba</title>
 </head>
+
 <body>
-    <h1>Lista de Estudiantes</h1>
-    <div class="lista">
-        <table>
-            <thead>
-                <tr>
-                    <th>DNI</th>
-                    <th>Apellido</th>
-                    <th>Nombre</th>
-                    <th>Edad</th>
-                </tr>
-            </thead>
-            <tbody class="tabla-estudiantes">
-                <!-- Las filas de la tabla se agregarán aquí dinámicamente -->
-            </tbody>
-        </table>
+    <div class="form">
+        <h1>Agregar estudiante nuevo</h1>
+        <input type="text" name="dni" id="dni" placeholder="DNI" />
+        <input type="text" id="nombre" placeholder="Nombre" />
+        <input type="text" id="apellido" placeholder="Apellido" />
+        <input type="number" id="edad" placeholder="Edad" />  
+        <input type="number" name="" id="nota" placeholder="Ingresa la nota">  
+        <button id="agregar">Agregar</button>
     </div>
 </body>
-<script src="lista.js" type="module"></script>
+<script src="db.js" type="module"></script>
+
 </html>
